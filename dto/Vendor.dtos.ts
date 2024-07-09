@@ -7,4 +7,5 @@ export interface CReateVendorInput {
     phone: string;
     email: String;
     password: String
-}
+};
+
