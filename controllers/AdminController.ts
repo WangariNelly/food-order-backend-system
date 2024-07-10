@@ -3,11 +3,19 @@ import { CreateVendorInput } from '../dto';
 import { Vendor } from '../models';
 import { GeneratePassword, GenerateSalt } from '../utility';
 
+export const findVendor = async (id: string | undefined, email?: string) => {
+  if(email){
+    return await Vendor.findOne({ email: email });
+  } else {
+    return await Vendor.findById(id);
+  }
+}
+
 //create new vendors
 export const CreateVendor = async (req: Request, res: Response, next: NextFunction) => {
   const { name, address,ownerName,pincode,password,phone,email,foodType } = <CreateVendorInput>req.body;
    
-  const existingVendor = await Vendor.findOne({ email: email });
+  const existingVendor = await findVendor('', email);
 
   if (existingVendor !== null) {
       return res.json({ "message": " A vendor with this email exist!"})
@@ -50,7 +58,7 @@ export const GetVendor = async (req: Request, res: Response, next: NextFunction)
 
 // get single vendor
 export const GetVendorById = async (req: Request, res: Response, next: NextFunction) => {
-   const vendor = await Vendor.findById(req.params.id);
+   const vendor = await findVendor(req.params.id);
 
    if (vendor !== null){
     return res.json(vendor)
