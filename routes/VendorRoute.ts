@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
-import { GetVendorProfile, UpdateVendorProfile, UpdateVendorService, VendorLogin } from "../controllers/VendorController";
+import { GetFoods, AddFood, GetVendorProfile, UpdateVendorProfile, UpdateVendorService, VendorLogin } from "../controllers/VendorController";
 import { Authenticate } from "../middleware";
 
 const router = express.Router();
@@ -8,6 +8,9 @@ router.post('/login', VendorLogin);
 router.get('/profile', Authenticate, GetVendorProfile);
 router.patch('/profile', Authenticate, UpdateVendorProfile);
 router.patch('/service', UpdateVendorService);
+
+router.post('/food', AddFood);
+router.get('/foods', GetFoods);
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
    res.json({
