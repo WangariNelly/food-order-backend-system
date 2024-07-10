@@ -7,7 +7,7 @@ interface VendorDoc extends Document {
   address: string;
   foodType: [string];
   phone: string;
-  email: String;
+  email: string;
   password: string;
   salt: string;
   serviceAvailable: boolean;
