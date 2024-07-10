@@ -7,7 +7,7 @@ const router = express.Router();
 //admin routes
 router.post('/vendor', CreateVendor);
 router.get('/vendor', GetVendor);
-router.post('/vendor/:id', GetVendorById);
+router.get('/vendor/:id', GetVendorById);
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.json({

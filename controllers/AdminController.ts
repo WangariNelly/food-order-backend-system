@@ -3,6 +3,7 @@ import { CreateVendorInput } from '../dto';
 import { Vendor } from '../models';
 import { GeneratePassword, GenerateSalt } from '../utility';
 
+//create new vendors
 export const CreateVendor = async (req: Request, res: Response, next: NextFunction) => {
   const { name, address,ownerName,pincode,password,phone,email,foodType } = <CreateVendorInput>req.body;
    
@@ -34,8 +35,9 @@ export const CreateVendor = async (req: Request, res: Response, next: NextFuncti
    })
 
   return res.json(createVendor);
-}
+};
 
+// get all vendors
 export const GetVendor = async (req: Request, res: Response, next: NextFunction) => {
    const vendors = await Vendor.find();
    
@@ -46,9 +48,14 @@ export const GetVendor = async (req: Request, res: Response, next: NextFunction)
 };
 
 
-
+// get single vendor
 export const GetVendorById = async (req: Request, res: Response, next: NextFunction) => {
+   const vendor = await Vendor.findById(req.params.id);
 
-}
+   if (vendor !== null){
+    return res.json(vendor)
+   }
+   return res.json({"message": "vendors data does is not available"});
+};
 
 
