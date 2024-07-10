@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/login', VendorLogin);
 router.get('/profile', Authenticate, GetVendorProfile);
-router.patch('/profile', UpdateVendorProfile);
+router.patch('/profile', Authenticate, UpdateVendorProfile);
 router.patch('/service', UpdateVendorService);
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
@@ -14,4 +14,10 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
     message: "Hello Vendor backend!!"
    })
 })
+
+
+
+
+
+
 export { router as VendorRoute };
