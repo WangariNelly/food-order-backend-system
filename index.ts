@@ -1,29 +1,15 @@
-import express from 'express';
-const app = express();
-import mongoose from 'mongoose';
+import express from "express";
+import App from './services/ExpressApp';
+import dbConnection from './services/Database';
 
-import bodyParser from 'body-parser';
- 
-import { AdminRoute, VendorRoute } from './routes'
-import { MONGO_URI } from './config';
+const StartServer = async () => { 
+    const app = express();
+    await dbConnection();
+    await App(app);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
-
-app.use('/admin', AdminRoute);
-app.use('/vendor', VendorRoute);
-
-//connect database
-mongoose.connect(MONGO_URI,{
-    // useUnifiedTopology: true,
-    // useCreateIndex: true
-}).then( result => {
-    console.log('MongoDB up and running...')
-}).catch(err => {
-    console.log('error' + err);
-})
-
-//server connection
 app.listen(5000, () => {
     console.log('Server listening on port 5000...')
-})
+});
+}
+
+StartServer();
