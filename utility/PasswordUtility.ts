@@ -25,14 +25,14 @@ export const ValidatePassword = async (
 };
 
 //generate token
-export const GenerateSignature = (payload: VendorPayload) => {
+export const GenerateSignature = (payload: AuthPayload) => {
     return jwt.sign(payload,APP_SECRET, { expiresIn: '1d'});  
 };
 
 //validate signature
 
 export const ValidateSignature = async(req: Request) => {
-const signature = req.get('Authorization')
+const signature = req.get('Authorization: Bearer TOKEN_STRING')
 if(signature){
      const payload = (await jwt.verify(signature.split('')[1], APP_SECRET)) as AuthPayload
     req.user = payload;
