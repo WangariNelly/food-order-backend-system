@@ -8,7 +8,7 @@ const router = express.Router();
 // Signup / Create Customer 
 router.post('/signup', CustomerSignUp)
 
-//LoginA
+//Login
 router.post('/login', CustomerLogin)
 
 // Authentication 

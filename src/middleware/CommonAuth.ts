@@ -12,9 +12,10 @@ declare global {
 
 export const Authenticate = async (req: Request, res: Response, next: NextFunction) => {
 
-    const signature = await ValidateSignature(req);
-    if(signature){
-        return next()
+    const validate = await ValidateSignature(req);
+    
+    if(validate){
+        next()
     }else{
         return res.json({message: "User Not authorised"});
     }
