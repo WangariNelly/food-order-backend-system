@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
-import { GetFoods, AddFood, GetVendorProfile, UpdateVendorProfile, UpdateVendorService, VendorLogin, UpdateVendorCoverImage } from "../controllers/VendorController";
+import { GetFoods, AddFood, GetVendorProfile, UpdateVendorProfile, UpdateVendorService, VendorLogin, UpdateVendorCoverImage, ProcessOrder, GetOrderDetails, GetOrders, GetOffers, AddOffer, EditOffer  } from "../controllers";
 import { Authenticate } from "../middleware";
 import fs from 'fs';
 import path from 'path';
@@ -42,12 +42,25 @@ router.patch('/service', UpdateVendorService);
 router.post('/food',images, AddFood);
 router.get('/foods', GetFoods);
 
+//Orders
+router.get('/orders', GetOrders);
+router.put('/order/:id/process', ProcessOrder);
+router.get('/order/:id', GetOrderDetails)
+ 
+
+
+//Offers
+router.get('/offers', GetOffers);
+router.post('/offer', AddOffer);
+router.put('/offer/:id', EditOffer)
+
+
+
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
    res.json({
     message: "Hello Vendor backend!!"
    })
 })
-
 
 
 
