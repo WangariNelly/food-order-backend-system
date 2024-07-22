@@ -1,7 +1,3 @@
-## Food order api
-
-## Project Structure
-
 food-order-backend/
     ├── src/
     │   ├── controllers/
