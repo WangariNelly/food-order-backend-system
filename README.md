@@ -6,7 +6,7 @@ food-order-backend/
     ├── src/
     │   ├── controllers/
     │   │   ├── AdminController.ts
-    │   │   ├── VendorController.ts  # Consistent naming for controllers
+    │   │   ├── VendorController.ts  
     │   │   ├── CustomerController.ts
     │   │   └── ...
     │   ├── dtos/
@@ -24,16 +24,16 @@ food-order-backend/
     │   │   ├── Customer.ts
     │   │   └── Vendor.ts
     │   ├── services/
-    │   │   └── Database.ts  # Separate files for better organization
+    │   │   └── Database.ts  
     │   │       └── ExpressApp.ts
     │   ├── utils/
     │   │   └── PasswordUtility.ts
     │   └── index.ts
-    ├── middlewares.ts  # Optional
+    ├── middlewares.ts  
     ├── routes.ts
     ├── package.json
     ├── tsconfig.json
-    ├── .env  # Optional
+    ├── .config
     └── .gitignore
 
 # Optional directory
