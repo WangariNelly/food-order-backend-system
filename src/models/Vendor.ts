@@ -14,6 +14,8 @@ interface VendorDoc extends Document {
   coverImages: [string];
   rating: number;
   foods: any;
+  lat: 0;
+  lng: 0
 }
 
 const vendorSchema = new Schema(

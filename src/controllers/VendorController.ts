@@ -90,25 +90,34 @@ export const UpdateVendorCoverImage = async (
   }
   return res.json({ message: "Unable to Update vendor profile " });
 };
+// UPDATE VENDOR SERVICE
 
+export const UpdateVendorService = async (req: Request,res: Response, next: NextFunction) => {
 
-export const UpdateVendorService = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
   const user = req.user;
-  if (user) {
-    const existingVendor = await findVendor(user._id);
-    if (existingVendor !== null) {
-      existingVendor.serviceAvailable = !existingVendor.serviceAvailable;
-      const savedResult = await existingVendor.save();
-      return res.json(savedResult);
-    }
-    return res.json(existingVendor);
+
+  const { lat, lng} = req.body;
+   
+  if(user){
+
+     const existingVendor = await findVendor(user._id);
+
+     if(existingVendor !== null){
+
+          existingVendor.serviceAvailable = !existingVendor.serviceAvailable;
+          if(lat && lng){
+              existingVendor.lat = lat;
+              existingVendor.lng = lng;
+          }
+          const saveResult = await existingVendor.save();
+
+          return res.json(saveResult);
+     }
+
   }
-  return res.json({ message: "Vendor not found" });
-};
+  return res.json({'message': 'Unable to Update vendor profile '})
+
+}
 
 //food
 
